@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue"
+import { ref, onMounted, onBeforeUnmount, nextTick } from "vue"
 import Player from "@vimeo/player"
 
 const container = ref(null)
@@ -56,6 +56,7 @@ onMounted(async() => {
 //    const res = await fetch('/MightyReel/api/vimeo-projects.php?per_page=10')
 // const data = await res.json()
 // console.log(data)
+
 })
 
 onBeforeUnmount(() => player?.destroy())
