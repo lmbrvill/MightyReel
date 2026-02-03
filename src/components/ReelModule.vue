@@ -1,5 +1,5 @@
 <template>
-	<v-card style="border:1px solid #ccc;background-color:#ddd">
+	<v-card style="border:1px solid #ccc;background-color:#ddd" elevation="0">
 	<v-row align="center">
 		<v-col cols="11">
 			<div class="vidGrid" v-if="!reelVids.length">{{ loadingText }}</div>
@@ -19,7 +19,7 @@
 				</v-card>	
 				
 		</v-col>
-		<v-col cols="1" >
+		<v-col cols="1" align-self="start" style="margin-top:40px;">
 			<div data-direction="down" @click="pointdown=!pointdown" >
 				<v-btn icon rounded="circle" size="x-small" >
 					<v-icon :icon="pointdown? 'mdi-chevron-down': 'mdi-chevron-up'" />

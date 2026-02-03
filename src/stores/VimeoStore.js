@@ -18,16 +18,21 @@ export const useVimeoStore = defineStore('vimeo', {
 			const res = await fetch('/MightyReel/api/vimeo-allVideos.php')
 			const json = await res.json()
 			const videosRaw = json.data || []
+			
 			this.videos = videosRaw.map(video => {
 				var dir, agcy
 				const directorTag = video.tags?.find(t => t.tag?.startsWith("d:"));
 				const agencyTag = video.tags?.find(t => t.tag?.startsWith("a:"));
 				directorTag ? dir = decodeURIComponent(directorTag.tag.replace(/^d:/, "")) : dir = '';
 				agencyTag ? agcy = decodeURIComponent(agencyTag.tag.replace(/^a:/, "")) : agcy = '';
+				const videoURI = video.uri.replace('/videos/','');
+				const thumb = video.pictures.sizes[2]
 				return {
 					...video,
 					director:dir,
 					agency:agcy,
+					shortURI: videoURI,
+					thumbnail:thumb,
 					inReel:false
 				};
 			});
@@ -65,6 +70,22 @@ export const useVimeoStore = defineStore('vimeo', {
 					118870787,
 					121778131,
 					198253825
+				],
+				name: "Martin Hockstaedtler for Brita",
+				author: "Danny Rosenbloom",
+				date: '2024-10-27',
+				notes: 'whatever',
+				sharedWith:[
+					{
+						UUID:1,
+						name:'Vernon Gardsgard',
+						email:'vg@vaynermedia.com'
+					},
+					{
+						UUID:2,
+						name:'Anne Martin',
+						email:'am@vaynermedia.com'
+					}
 				]
 			},
 			{
@@ -74,8 +95,22 @@ export const useVimeoStore = defineStore('vimeo', {
 					1158526288,
 					198256341,
 					118870787,
-					// 121778131,
-					// 198253825
+				],
+				name: "Carmen Hoof for Toyota",
+				author: "Jeff C. McDougal",
+				date: '2024-10-14',
+				notes: 'whatever other',
+				sharedWith:[
+					{
+						UUID:3,
+						name:'JH Thompson',
+						email:'jThompson@razorfish.com'
+					},
+					{
+						UUID:4,
+						name:'Cory Lewandowski',
+						email:'cLewandowski@razorfish.com'
+					}
 				]
 			}
 			

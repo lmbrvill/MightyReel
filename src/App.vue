@@ -1,16 +1,13 @@
-
-
 <template>
 	<v-app>
 		<v-main>
-			
-
     	<v-navigation-drawer
 			class="navBarAlt"
 			permanent
 			location="left"
 			width="140"
-			color="blue"
+			color="#0097A7"
+			style="border:none;"
 		>
 			<div style="position:fixed;bottom:0;width:100%">
 				<img :src="menuImg" width="150px" style="position:relative;left:-5px;top:17px;">
@@ -90,17 +87,17 @@
 							
 							<v-expansion-panel title="Reel Library" >
 								<v-expansion-panel-text>
-									<LibraryReels />
+									<ReelLibrary />
 								</v-expansion-panel-text>
 							</v-expansion-panel>
 							<!-- <v-expansion-panel title="Folders">
 								<v-expansion-panel-text>
-									<LibraryFolders />
+									<FolderLibrary />
 								</v-expansion-panel-text>
 							</v-expansion-panel> -->
 							<v-expansion-panel title="Video Library" >
 								<v-expansion-panel-text>
-									<Library :button='1' />
+									<VideoLibrary :button='1' />
 								</v-expansion-panel-text>
 							</v-expansion-panel>
 						</v-expansion-panels>
@@ -116,17 +113,17 @@ import { useVimeoStore } from '@/stores/VimeoStore.js'
 const vimeo = useVimeoStore()
 const showPlayer = ref(true)
 const Panels = ref(0)
- const menuImg = ref("../../images/ReelLong.png")
+ const menuImg = ref("../../images/ReelLonger.png")
 //COMPONENTS
 	import Player from '@/_VimeoPlayer/vim2.vue'
-	import Library from '@/components/LibraryBoxAlt.vue'
-	import LibraryFolders from '@/components/FolderBox.vue'
-	import LibraryReels from '@/components/ReelBox.vue'
+	import VideoLibrary from '@/components/VideoLibrary.vue'
+	import FolderLibrary from '@/components/FolderLibrary.vue'
+	import ReelLibrary from '@/components/ReelLibrary.vue'
 	import ReelMod from '@/components/ReelModule.vue'
 onMounted(async() =>{
 	await vimeo.fetchVideos()
 	await vimeo.fetchReels()
-	
+	console.log(vimeo.videos)
 	
 })
 function changeReel(reelID){

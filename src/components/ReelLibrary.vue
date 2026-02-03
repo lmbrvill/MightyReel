@@ -7,31 +7,6 @@
 		elevation="0"
 	>
 	<v-container>
-		<!-- <ReelMod /> -->
-		<!-- <v-row align="center">
-			<v-col cols="11">
-				<div class="vidGrid" v-if="!reelVids.length">{{ loadingText }}</div>
-				<div :class="['vidGrid',{'wider':!pointdown}]" v-else>
-					<v-card	
-						class="mb-4 pa-0 vidChipSm" 
-						hide-details 
-						v-for="(video, index) in reelVids"
-					>
-						<img :src="video.pictures.sizes[2].link" class="thumb">
-						<v-card-text class="pa-2 pt-0 titleTxt"> 
-							{{ video.name }}
-						</v-card-text>
-					</v-card>	
-				</div>	
-			</v-col>
-			<v-col cols="1">
-				<div data-direction="down" @click="pointdown=!pointdown" >
-					<v-btn icon rounded="circle" size="x-small"  >
-						<v-icon :icon="pointdown? 'mdi-chevron-down': 'mdi-chevron-up'" />
-					</v-btn>
-				</div>
-			</v-col>
-		</v-row> -->
 		<v-row>
 			<v-col cols="11">
 				<div>
@@ -110,8 +85,8 @@ const reelVids = computed(() =>{
 }
  
 onMounted(async() =>{
-	// await vimeo.fetchVideos()
-	// console.log (vimeo.videos)
+	await vimeo.fetchReels()
+	console.log (vimeo.reelList)
 })
 const reelHeaders = [
 	{ width: 200, title: 'Name', key: 'name', align: 'start', sortable: true },
